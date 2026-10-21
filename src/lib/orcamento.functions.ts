@@ -13,7 +13,7 @@ export const enviarOrcamento = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => schema.parse(data))
   .handler(async ({ data }) => {
     try {
-      const res = await fetch("https://api.techintelligency.com.br/webhook-test/projeto-simple-empreendimentos", {
+      const res = await fetch("https://api.techintelligency.com.br/webhook/projeto-simple-empreendimentos", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...data, origem: "site-simple-etiquetas", enviadoEm: new Date().toISOString() }),
