@@ -364,15 +364,15 @@ function Index() {
                 <MessageCircle className="h-5 w-5" />
               </a>
               <a
-                href="mailto:comercialsimpleex@gmail.com"
-                aria-label="Enviar e-mail para comercialsimpleex@gmail.com"
+                href="mailto:atendimento@simpleempreendimentos.com.br"
+                aria-label="Enviar e-mail para atendimento@simpleempreendimentos.com.br"
                 className="grid h-12 w-12 place-items-center rounded-full bg-primary text-primary-foreground transition hover:opacity-90"
               >
                 <Mail className="h-5 w-5" />
               </a>
             </div>
             <p className="mt-5 text-lg font-bold">(31) 98406-0199</p>
-            <p className="mt-1 break-words text-muted-foreground">comercialsimpleex@gmail.com</p>
+            <p className="mt-1 break-words text-muted-foreground">atendimento@simpleempreendimentos.com.br</p>
             <p className="mt-4 text-sm text-muted-foreground">Rua São José, 51 — Extrema-MG — CEP 37640-408</p>
           </div>
         </div>
