@@ -102,7 +102,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           description:
             "Fornecimento de etiquetas térmicas, envelopes de segurança, fitas adesivas e plástico bolha para indústria, logística, e-commerce e varejo.",
           slogan: "Para cada cliente, uma solução!",
-          email: "comercialsimpleex@gmail.com",
+          email: "atendimento@simpleempreendimentos.com.br",
           telephone: "+55-31-98406-0199",
           address: {
             "@type": "PostalAddress",
