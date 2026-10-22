@@ -5,6 +5,7 @@ import hero from "@/assets/hero-insumos.jpg";
 import heroBg from "@/assets/hero-insumos-fundo.jpg";
 import { cn } from "@/lib/utils";
 import { products } from "@/lib/products";
+import { enviarOrcamento } from "@/lib/orcamento.functions";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -71,6 +72,8 @@ function goToSection(href: string, close?: () => void) {
 
 function Index() {
   const [sent, setSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const menuOpenRef = useRef(false);
   menuOpenRef.current = menuOpen;
@@ -329,20 +332,61 @@ function Index() {
         <p className="mt-4 text-muted-foreground">Conte o que sua empresa precisa e nossa equipe retorna dentro de 24hrs.</p>
         <div className="mt-8 grid gap-6 md:grid-cols-2 md:items-stretch">
           <form
-            onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+            onSubmit={async (e) => {
+              e.preventDefault();
+              if (submitting) return;
+
+              const form = e.currentTarget;
+              const values = new FormData(form);
+              setSubmitting(true);
+              setSubmitError("");
+
+              try {
+                const result = await enviarOrcamento({
+                  data: {
+                    empresa: String(values.get("empresa") ?? ""),
+                    nome: String(values.get("nome") ?? ""),
+                    email: String(values.get("email") ?? ""),
+                    telefone: String(values.get("telefone") ?? ""),
+                    mensagem: String(values.get("mensagem") ?? ""),
+                  },
+                });
+
+                if (!result?.ok) {
+                  setSubmitError("Não foi possível enviar seu pedido. Tente novamente ou fale conosco pelo WhatsApp.");
+                  return;
+                }
+
+                setSent(true);
+                form.reset();
+              } catch (error) {
+                console.error("Erro ao enviar orçamento:", error);
+                setSubmitError("Não foi possível enviar seu pedido. Tente novamente ou fale conosco pelo WhatsApp.");
+              } finally {
+                setSubmitting(false);
+              }
+            }}
             className="space-y-4 rounded-2xl border border-border bg-card p-8"
           >
-              {sent ? (
-                <p className="py-10 text-center text-lg font-bold text-primary">Obrigado! Entraremos em contato em breve.</p>
-              ) : (
-                <>
-                  {[["Empresa", "text"], ["Seu nome", "text"], ["E-mail", "email"], ["Telefone", "tel"]].map(([l, t]) => (
-                    <input key={l} required type={t} placeholder={l} className="w-full rounded-lg border border-input bg-background px-4 py-3 outline-none focus:border-primary" />
-                  ))}
-                  <textarea placeholder="O que você precisa? (tipo, tamanho, quantidade)" rows={4} className="w-full rounded-lg border border-input bg-background px-4 py-3 outline-none focus:border-primary" />
-                  <button className="w-full rounded-full bg-primary py-3.5 font-bold text-primary-foreground transition hover:opacity-90">Enviar pedido de orçamento</button>
-                </>
-              )}
+            {sent ? (
+              <p className="py-10 text-center text-lg font-bold text-primary">
+                Pedido enviado! Entraremos em contato em breve.
+              </p>
+            ) : (
+              <>
+                <input name="empresa" required maxLength={200} type="text" placeholder="Empresa" className="w-full rounded-lg border border-input bg-background px-4 py-3 outline-none focus:border-primary" />
+                <input name="nome" required maxLength={200} type="text" placeholder="Seu nome" className="w-full rounded-lg border border-input bg-background px-4 py-3 outline-none focus:border-primary" />
+                <input name="email" required maxLength={255} type="email" placeholder="E-mail" className="w-full rounded-lg border border-input bg-background px-4 py-3 outline-none focus:border-primary" />
+                <input name="telefone" required maxLength={40} type="tel" placeholder="Telefone" className="w-full rounded-lg border border-input bg-background px-4 py-3 outline-none focus:border-primary" />
+                <textarea name="mensagem" maxLength={3000} placeholder="O que você precisa? (tipo, tamanho, quantidade)" rows={4} className="w-full rounded-lg border border-input bg-background px-4 py-3 outline-none focus:border-primary" />
+                {submitError && (
+                  <p role="alert" className="text-sm font-medium text-red-600">{submitError}</p>
+                )}
+                <button disabled={submitting} className="w-full rounded-full bg-primary py-3.5 font-bold text-primary-foreground transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60">
+                  {submitting ? "Enviando..." : "Enviar pedido de orçamento"}
+                </button>
+              </>
+            )}
           </form>
           <div className="flex flex-col justify-center rounded-2xl border border-border bg-card p-8 text-center">
             <p className="font-display text-lg font-extrabold tracking-widest">FALE CONOSCO!</p>
