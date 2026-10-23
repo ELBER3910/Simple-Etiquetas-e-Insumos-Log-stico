@@ -418,15 +418,15 @@ function Index() {
                 <MessageCircle className="h-5 w-5" />
               </a>
               <a
-                href="mailto:comercialsimpleex@gmail.com"
-                aria-label="Enviar e-mail para comercialsimpleex@gmail.com"
+                href="mailto:atendimento@simpleempreendimentos.com.br"
+                aria-label="Enviar e-mail para atendimento@simpleempreendimentos.com.br"
                 className="grid h-12 w-12 place-items-center rounded-full bg-primary text-primary-foreground transition hover:opacity-90"
               >
                 <Mail className="h-5 w-5" />
               </a>
             </div>
             <p className="mt-5 text-lg font-bold">(31) 98406-0199</p>
-            <p className="mt-1 break-words text-muted-foreground">comercialsimpleex@gmail.com</p>
+            <p className="mt-1 break-words text-muted-foreground">atendimento@simpleempreendimentos.com.br</p>
             <p className="mt-4 text-sm text-muted-foreground">Rua São José, 51 — Extrema-MG — CEP 37640-408</p>
           </div>
         </div>
@@ -502,11 +502,11 @@ function Index() {
 
       <div className="wa-fab pointer-events-none fixed bottom-0 right-0 z-40 p-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:p-6">
         <a
-          href="https://wa.me/5531984060199?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20de%20etiquetas."
+          href="https://wa.me/5531984060199?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento."
           target="_blank"
           rel="noreferrer"
           data-wa-fab
-          aria-label="Conversar no WhatsApp com a Simple Etiquetas"
+          aria-label="Conversar no WhatsApp com a Simple Empreendimentos"
           className="group pointer-events-auto flex flex-row-reverse items-center gap-3 transition-transform duration-200 hover:scale-105 active:scale-95"
         >
           <span className="wa-fab-bob relative grid h-14 w-14 shrink-0 place-items-center rounded-full bg-whatsapp text-whatsapp-foreground shadow-lg shadow-whatsapp/30 ring-1 ring-whatsapp-deep/40">
