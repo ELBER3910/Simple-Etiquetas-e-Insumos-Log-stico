@@ -16,3 +16,5 @@
 - Topo: slogan "Insumos Logísticos" logo abaixo da logo, em letra miúda e espaçada.
 - Botão flutuante do WhatsApp no canto inferior direito: entra animado, flutua, emite ondas de pulso e mostra "Fale no WhatsApp" no mouse; parado e visível com "reduzir movimento".
 - Topo: imagem de fundo discreta de insumos (rolos de etiquetas, envelope kraft, fita, plástico bolha) atrás da abertura, esmaecida no lado do texto para não atrapalhar a leitura.
+- Produtos: linha de limpeza e higiene acrescentada com seis itens (água sanitária, detergentes neutro e perolado, limpador multiuso, desinfetante e papel higiênico institucional), com imagens ilustrativas e sem preços.
+- Produtos de limpeza: fotos reais enviadas pelo cliente no lugar das ilustrações, centralizadas sobre o creme do site sem cortar o produto; conferido no navegador, as 15 imagens carregam.
