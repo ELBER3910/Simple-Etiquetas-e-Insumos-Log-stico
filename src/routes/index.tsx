@@ -5,7 +5,7 @@ import logoLockup from "@/assets/simple-logo-lockup.png.asset.json";
 import logoFull from "@/assets/simple-logo-full.png.asset.json";
 import hero from "@/assets/hero-insumos.jpg";
 import heroBg from "@/assets/hero-insumos-fundo.jpg";
-import catalogo from "@/assets/catalogo-simple.jpg.asset.json";
+import catalogo from "@/assets/catalogo-simple.jpg";
 import { cn } from "@/lib/utils";
 import { products } from "@/lib/products";
 import { useServerFn } from "@tanstack/react-start";
@@ -490,7 +490,7 @@ function Index() {
             </div>
             <div className="min-h-0 flex-1 overflow-y-auto rounded-xl bg-background shadow-2xl">
               <img
-                src={catalogo.url}
+                src={catalogo}
                 alt="Catálogo de produtos Simple Etiquetas: etiquetas térmicas, envelopes de segurança, fitas adesivas, plástico bolha, mobiliário e linha de limpeza"
                 className="w-full"
               />

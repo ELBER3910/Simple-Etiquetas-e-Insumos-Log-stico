@@ -4,12 +4,12 @@ import resma from "@/assets/produto-etiqueta-resma.jpg";
 import envelope from "@/assets/produto-envelope.jpg";
 import fita from "@/assets/produto-fita.jpg";
 import bolha from "@/assets/produto-plastico-bolha.jpg";
-import aguaSanitaria from "@/assets/produto-agua-sanitaria.jpg.asset.json";
-import detergenteNeutro from "@/assets/produto-detergente-neutro.jpg.asset.json";
-import limpadorMultiuso from "@/assets/produto-limpador-multiuso.jpg.asset.json";
-import desinfetante from "@/assets/produto-desinfetante-natureza.jpg.asset.json";
-import detergentePerolado from "@/assets/produto-detergente-perolado.jpg.asset.json";
-import papelHigienico from "@/assets/produto-papel-higienico.jpg.asset.json";
+import aguaSanitaria from "@/assets/produto-agua-sanitaria.jpg";
+import detergenteNeutro from "@/assets/produto-detergente-neutro.jpg";
+import limpadorMultiuso from "@/assets/produto-limpador-multiuso.jpg";
+import desinfetante from "@/assets/produto-desinfetante-natureza.jpg";
+import detergentePerolado from "@/assets/produto-detergente-perolado.jpg";
+import papelHigienico from "@/assets/produto-papel-higienico.jpg";
 
 export type ProductLine = "embalagem" | "limpeza";
 
@@ -90,7 +90,7 @@ export const products = [
     name: "Água sanitária",
     specification: "Galão 5 L",
     description: "Água sanitária em galão de 5 litros para limpeza pesada e desinfecção de pisos, banheiros e áreas comuns de fábricas, depósitos e escritórios.",
-    image: aguaSanitaria.url,
+    image: aguaSanitaria,
     alt: "Galão de água sanitária de 5 litros com rótulo azul",
     line: "limpeza" as ProductLine,
   },
@@ -98,7 +98,7 @@ export const products = [
     name: "Detergente neutro",
     specification: "Galão 5 L",
     description: "Detergente neutro em galão de 5 litros para a limpeza geral de superfícies, utensílios e equipamentos, sem manchar e sem cheiro forte.",
-    image: detergenteNeutro.url,
+    image: detergenteNeutro,
     alt: "Galão azul de detergente neutro de 5 litros",
     line: "limpeza" as ProductLine,
   },
@@ -106,7 +106,7 @@ export const products = [
     name: "Limpador multiuso Campestre",
     specification: "Galão 5 L",
     description: "Limpador multiuso com aroma campestre em galão de 5 litros para pisos, bancadas e superfícies laváveis do dia a dia da operação.",
-    image: limpadorMultiuso.url,
+    image: limpadorMultiuso,
     alt: "Galão roxo de limpador multiuso Campestre de 5 litros",
     line: "limpeza" as ProductLine,
   },
@@ -114,7 +114,7 @@ export const products = [
     name: "Desinfetante Natureza",
     specification: "Galão 5 L",
     description: "Desinfetante com fragrância Natureza em galão de 5 litros para desinfecção de pisos e ambientes, deixando o cheiro de limpeza por mais tempo.",
-    image: desinfetante.url,
+    image: desinfetante,
     alt: "Galão verde de desinfetante Natureza de 5 litros",
     line: "limpeza" as ProductLine,
   },
@@ -122,7 +122,7 @@ export const products = [
     name: "Detergente perolado Doveli",
     specification: "Galão 5 L",
     description: "Detergente perolado Doveli em galão de 5 litros, de alta espuma, para a limpeza de louças, bancadas e equipamentos da cozinha e do refeitório.",
-    image: detergentePerolado.url,
+    image: detergentePerolado,
     alt: "Galão rosa de detergente perolado Doveli de 5 litros",
     line: "limpeza" as ProductLine,
   },
@@ -130,7 +130,7 @@ export const products = [
     name: "Papel higiênico institucional",
     specification: "8 rolos · 300 m",
     description: "Papel higiênico institucional em pacote com 8 rolos de 300 metros, para banheiros de fábricas, escritórios e centros de distribuição.",
-    image: papelHigienico.url,
+    image: papelHigienico,
     alt: "Pacote de papel higiênico institucional com rolos de 300 metros",
     line: "limpeza" as ProductLine,
   },
