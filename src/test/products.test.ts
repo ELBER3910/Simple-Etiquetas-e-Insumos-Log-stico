@@ -2,8 +2,8 @@ import { describe, expect, it } from "vitest";
 import { products } from "@/lib/products";
 
 describe("Catálogo informado", () => {
-  it("contém os nove produtos do anexo", () => {
-    expect(products).toHaveLength(9);
+  it("contém os nove itens de embalagem e os seis de limpeza", () => {
+    expect(products).toHaveLength(15);
     expect(products.map(({ specification }) => specification)).toEqual([
       "2.000 etiquetas por rolo · Duas colunas",
       "1.000 etiquetas por rolo · Uma coluna",
@@ -14,6 +14,20 @@ describe("Catálogo informado", () => {
       "1,30 m × 100 m",
       "65 cm × 100 m",
       "43 cm × 100 m",
+      "Galão 5 L",
+      "Galão 5 L",
+      "Galão 5 L",
+      "Galão 5 L",
+      "Galão 5 L",
+      "8 rolos · 300 m",
+    ]);
+    expect(products.filter((p) => p.line === "limpeza").map((p) => p.name)).toEqual([
+      "Água sanitária",
+      "Detergente neutro",
+      "Limpador multiuso Campestre",
+      "Desinfetante Natureza",
+      "Detergente perolado Doveli",
+      "Papel higiênico institucional",
     ]);
   });
 
