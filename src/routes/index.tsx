@@ -1,71 +1,41 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Mail, Menu, MessageCircle, Phone, X } from "lucide-react";
+import logoLockup from "@/assets/simple-logo-lockup.png.asset.json";
+import logoFull from "@/assets/simple-logo-full.png.asset.json";
 import hero from "@/assets/hero-insumos.jpg";
 import heroBg from "@/assets/hero-insumos-fundo.jpg";
+import catalogo from "@/assets/catalogo-simple.jpg.asset.json";
 import { cn } from "@/lib/utils";
 import { products } from "@/lib/products";
+import { useServerFn } from "@tanstack/react-start";
 import { enviarOrcamento } from "@/lib/orcamento.functions";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      {
-        title:
-          "Simple Etiquetas | Etiquetas Térmicas e Embalagens",
-      },
+      { title: "Simple Etiquetas | Etiquetas Térmicas, Envelopes e Plástico Bolha" },
       {
         name: "description",
         content:
-          "Compre etiquetas térmicas 40x25 mm e 100x150 mm, envelopes de segurança, fitas adesivas e plástico bolha. Solicite seu orçamento à Simple Etiquetas, em Extrema-MG.",
+          "Etiquetas térmicas em rolo e resma, envelopes de segurança, fitas adesivas e plástico bolha para indústria, logística, e-commerce e varejo. Atendimento direto e orçamento em 24 horas.",
       },
-      {
-        property: "og:title",
-        content:
-          "Simple Etiquetas | Etiquetas Térmicas e Embalagens",
-      },
+      { property: "og:title", content: "Simple Etiquetas | Etiquetas Térmicas e Insumos de Embalagem" },
       {
         property: "og:description",
         content:
-          "Etiquetas térmicas, envelopes de segurança, fitas adesivas e plástico bolha para empresas, logística e e-commerce. Solicite um orçamento à Simple Etiquetas.",
+          "Etiquetas térmicas, envelopes de segurança, fitas adesivas e plástico bolha para a sua operação. Peça o orçamento e receba resposta dentro de 24 horas.",
       },
-      {
-        property: "og:url",
-        content: "https://www.simpleempreendimentos.com.br/",
-      },
-      {
-        property: "og:type",
-        content: "website",
-      },
-      {
-        property: "og:locale",
-        content: "pt_BR",
-      },
-      {
-        property: "og:site_name",
-        content: "Simple Etiquetas",
-      },
-      {
-        name: "twitter:card",
-        content: "summary_large_image",
-      },
-      {
-        name: "twitter:title",
-        content:
-          "Simple Etiquetas | Etiquetas Térmicas e Embalagens",
-      },
+      { property: "og:url", content: "/" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Simple Etiquetas | Etiquetas Térmicas e Insumos de Embalagem" },
       {
         name: "twitter:description",
-        content:
-          "Etiquetas térmicas, envelopes de segurança, fitas adesivas e plástico bolha para empresas. Atendimento em Extrema-MG.",
+        content: "Etiquetas térmicas, envelopes, fitas adesivas e plástico bolha para indústria, logística, e-commerce e varejo.",
       },
     ],
-    links: [
-      {
-        rel: "canonical",
-        href: "https://www.simpleempreendimentos.com.br/",
-      },
-    ],
+    links: [{ rel: "canonical", href: "/" }],
   }),
   component: Index,
 });
@@ -104,14 +74,38 @@ function goToSection(href: string, close?: () => void) {
   );
 }
 
+function ProductCard({ product: p }: { product: (typeof products)[number] }) {
+  return (
+    <article className="group flex min-w-0 flex-col overflow-hidden rounded-lg border border-border bg-background transition-colors hover:border-primary">
+      <img src={p.image} alt={p.alt} loading="lazy" width={1024} height={768} className="aspect-[4/3] w-full object-cover" />
+      <div className="flex flex-1 flex-col p-6">
+        <h3 className="text-lg font-bold leading-snug tracking-normal">{p.name}</h3>
+        <p className="mt-2 text-sm font-bold text-kraft-deep">{p.specification}</p>
+        <p className="mt-4 text-base leading-relaxed text-muted-foreground">{p.description}</p>
+      </div>
+    </article>
+  );
+}
+
 function Index() {
   const [sent, setSent] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState("");
+  const [sending, setSending] = useState(false);
+  const [erro, setErro] = useState(false);
+  const enviar = useServerFn(enviarOrcamento);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuOpenRef = useRef(false);
   menuOpenRef.current = menuOpen;
+  const [catalogoAberto, setCatalogoAberto] = useState(false);
   const [activeSec, setActiveSec] = useState("inicio");
+
+  useEffect(() => {
+    if (!catalogoAberto) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setCatalogoAberto(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [catalogoAberto]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -166,7 +160,7 @@ function Index() {
             className="flex min-w-0 flex-col items-center justify-self-start gap-1"
           >
             <img
-              src="/simple-logo-lockup.png"
+              src={logoLockup.url}
               alt="Simple Etiquetas"
               className="h-10 w-auto shrink-0 sm:h-11"
             />
@@ -308,6 +302,13 @@ function Index() {
           <div className="mt-8 flex flex-wrap gap-4">
             <a href="#orcamento" className="rounded-full bg-ink px-7 py-3.5 font-bold text-ink-foreground transition hover:opacity-90">Peça seu orçamento</a>
             <a href="#produtos" className="rounded-full border-2 border-ink px-7 py-3.5 font-bold transition hover:bg-secondary">Ver produtos</a>
+            <button
+              type="button"
+              onClick={() => setCatalogoAberto(true)}
+              className="rounded-full bg-primary px-7 py-3.5 font-bold text-primary-foreground transition hover:opacity-90"
+            >
+              Ver catálogo
+            </button>
           </div>
         </div>
         <div className="relative">
@@ -320,17 +321,17 @@ function Index() {
       <section id="produtos" className="bg-card py-20">
         <div className="mx-auto max-w-6xl px-6">
           <h2 className="text-3xl font-extrabold md:text-4xl">Nossos produtos</h2>
-          <p className="mt-3 text-muted-foreground">Etiquetas térmicas e materiais de embalagem para identificar, proteger e expedir seus produtos.</p>
+          <p className="mt-3 text-muted-foreground">Insumos de embalagem, identificação e linha de limpeza institucional para a sua operação.</p>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {products.map((p) => (
-              <article key={`${p.name}-${p.specification}`} className="group flex min-w-0 flex-col overflow-hidden rounded-lg border border-border bg-background transition-colors hover:border-primary">
-                <img src={p.image} alt={p.alt} loading="lazy" width={1024} height={768} className="aspect-[4/3] w-full object-cover" />
-                <div className="flex flex-1 flex-col p-6">
-                  <h3 className="text-lg font-bold leading-snug tracking-normal">{p.name}</h3>
-                  <p className="mt-2 text-sm font-bold text-kraft-deep">{p.specification}</p>
-                  <p className="mt-4 text-base leading-relaxed text-muted-foreground">{p.description}</p>
-                </div>
-              </article>
+            {products.filter((p) => p.line === "embalagem").map((p) => (
+              <ProductCard key={`${p.name}-${p.specification}`} product={p} />
+            ))}
+          </div>
+          <h3 className="mt-16 text-2xl font-extrabold md:text-3xl">Limpeza e higiene institucional</h3>
+          <p className="mt-3 text-muted-foreground">Limpeza em galões de 5 litros e papel higiênico institucional para o dia a dia da sua operação.</p>
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {products.filter((p) => p.line === "limpeza").map((p) => (
+              <ProductCard key={`${p.name}-${p.specification}`} product={p} />
             ))}
           </div>
           <p className="mt-6 text-sm text-muted-foreground">Imagens ilustrativas dos produtos.</p>
@@ -368,59 +369,36 @@ function Index() {
           <form
             onSubmit={async (e) => {
               e.preventDefault();
-              if (submitting) return;
-
-              const form = e.currentTarget;
-              const values = new FormData(form);
-              setSubmitting(true);
-              setSubmitError("");
-
+              const fd = new FormData(e.currentTarget);
+              const get = (k: string) => String(fd.get(k) ?? "");
+              setSending(true);
+              setErro(false);
               try {
-                const result = await enviarOrcamento({
-                  data: {
-                    empresa: String(values.get("empresa") ?? ""),
-                    nome: String(values.get("nome") ?? ""),
-                    email: String(values.get("email") ?? ""),
-                    telefone: String(values.get("telefone") ?? ""),
-                    mensagem: String(values.get("mensagem") ?? ""),
-                  },
+                const r = await enviar({
+                  data: { empresa: get("empresa"), nome: get("nome"), email: get("email"), telefone: get("telefone"), mensagem: get("mensagem") },
                 });
-
-                if (!result?.ok) {
-                  setSubmitError("Não foi possível enviar seu pedido. Tente novamente ou fale conosco pelo WhatsApp.");
-                  return;
-                }
-
-                setSent(true);
-                form.reset();
-              } catch (error) {
-                console.error("Erro ao enviar orçamento:", error);
-                setSubmitError("Não foi possível enviar seu pedido. Tente novamente ou fale conosco pelo WhatsApp.");
+                if (r.ok) setSent(true);
+                else setErro(true);
+              } catch {
+                setErro(true);
               } finally {
-                setSubmitting(false);
+                setSending(false);
               }
             }}
             className="space-y-4 rounded-2xl border border-border bg-card p-8"
           >
-            {sent ? (
-              <p className="py-10 text-center text-lg font-bold text-primary">
-                Pedido enviado! Entraremos em contato em breve.
-              </p>
-            ) : (
-              <>
-                <input name="empresa" required maxLength={200} type="text" placeholder="Empresa" className="w-full rounded-lg border border-input bg-background px-4 py-3 outline-none focus:border-primary" />
-                <input name="nome" required maxLength={200} type="text" placeholder="Seu nome" className="w-full rounded-lg border border-input bg-background px-4 py-3 outline-none focus:border-primary" />
-                <input name="email" required maxLength={255} type="email" placeholder="E-mail" className="w-full rounded-lg border border-input bg-background px-4 py-3 outline-none focus:border-primary" />
-                <input name="telefone" required maxLength={40} type="tel" placeholder="Telefone" className="w-full rounded-lg border border-input bg-background px-4 py-3 outline-none focus:border-primary" />
-                <textarea name="mensagem" maxLength={3000} placeholder="O que você precisa? (tipo, tamanho, quantidade)" rows={4} className="w-full rounded-lg border border-input bg-background px-4 py-3 outline-none focus:border-primary" />
-                {submitError && (
-                  <p role="alert" className="text-sm font-medium text-red-600">{submitError}</p>
-                )}
-                <button disabled={submitting} className="w-full rounded-full bg-primary py-3.5 font-bold text-primary-foreground transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60">
-                  {submitting ? "Enviando..." : "Enviar pedido de orçamento"}
-                </button>
-              </>
-            )}
+              {sent ? (
+                <p className="py-10 text-center text-lg font-bold text-primary">Obrigado! Entraremos em contato em breve.</p>
+              ) : (
+                <>
+                  {[["empresa", "Empresa", "text"], ["nome", "Seu nome", "text"], ["email", "E-mail", "email"], ["telefone", "Telefone", "tel"]].map(([n, l, t]) => (
+                    <input key={n} name={n} required type={t} placeholder={l} aria-label={l} className="w-full rounded-lg border border-input bg-background px-4 py-3 outline-none focus:border-primary" />
+                  ))}
+                  <textarea name="mensagem" placeholder="O que você precisa? (tipo, tamanho, quantidade)" rows={4} className="w-full rounded-lg border border-input bg-background px-4 py-3 outline-none focus:border-primary" />
+                  {erro && <p className="text-sm font-semibold text-destructive">Não foi possível enviar agora. Tente novamente ou fale pelo WhatsApp.</p>}
+                  <button disabled={sending} className="w-full rounded-full bg-primary py-3.5 font-bold text-primary-foreground transition hover:opacity-90 disabled:opacity-60">{sending ? "Enviando..." : "Enviar pedido de orçamento"}</button>
+                </>
+              )}
           </form>
           <div className="flex flex-col justify-center rounded-2xl border border-border bg-card p-8 text-center">
             <p className="font-display text-lg font-extrabold tracking-widest">FALE CONOSCO!</p>
@@ -442,15 +420,15 @@ function Index() {
                 <MessageCircle className="h-5 w-5" />
               </a>
               <a
-                href="mailto:atendimento@simpleempreendimentos.com.br"
-                aria-label="Enviar e-mail para atendimento@simpleempreendimentos.com.br"
+                href="mailto:comercialsimpleex@gmail.com"
+                aria-label="Enviar e-mail para comercialsimpleex@gmail.com"
                 className="grid h-12 w-12 place-items-center rounded-full bg-primary text-primary-foreground transition hover:opacity-90"
               >
                 <Mail className="h-5 w-5" />
               </a>
             </div>
             <p className="mt-5 text-lg font-bold">(31) 98406-0199</p>
-            <p className="mt-1 break-words text-muted-foreground">atendimento@simpleempreendimentos.com.br</p>
+            <p className="mt-1 break-words text-muted-foreground">comercialsimpleex@gmail.com</p>
             <p className="mt-4 text-sm text-muted-foreground">Rua São José, 51 — Extrema-MG — CEP 37640-408</p>
           </div>
         </div>
@@ -460,7 +438,7 @@ function Index() {
         <div className="mx-auto grid max-w-6xl gap-x-10 gap-y-8 px-6 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_auto] md:items-start">
           <div>
             <div className="inline-block rounded-2xl bg-background p-4">
-              <img src="/simple-logo-full.png" alt="Simple Etiquetas — Insumos Logísticos" className="h-28 w-auto sm:h-32" />
+              <img src={logoFull.url} alt="Simple Etiquetas — Insumos Logísticos" className="h-28 w-auto sm:h-32" />
             </div>
             <p className="mt-6 text-base leading-relaxed opacity-80">
               Oferecemos soluções inovadoras e confiáveis com excelência no atendimento e qualidade dos produtos.
@@ -487,6 +465,42 @@ function Index() {
           </nav>
         </div>
       </footer>
+
+      {catalogoAberto && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Catálogo de produtos Simple Etiquetas"
+          className="fixed inset-0 z-50 flex flex-col bg-ink/95 p-3 backdrop-blur-sm sm:p-6"
+          onClick={() => setCatalogoAberto(false)}
+        >
+          <div className="mx-auto flex h-full w-full max-w-4xl flex-col" onClick={(e) => e.stopPropagation()}>
+            <div className="mb-3 flex items-center justify-between gap-4">
+              <p className="font-display text-sm font-bold uppercase tracking-widest text-background sm:text-base">
+                Catálogo de produtos
+              </p>
+              <button
+                type="button"
+                onClick={() => setCatalogoAberto(false)}
+                aria-label="Fechar catálogo"
+                className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-background text-ink transition hover:opacity-90"
+              >
+                <X className="h-5 w-5" aria-hidden />
+              </button>
+            </div>
+            <div className="min-h-0 flex-1 overflow-y-auto rounded-xl bg-background shadow-2xl">
+              <img
+                src={catalogo.url}
+                alt="Catálogo de produtos Simple Etiquetas: etiquetas térmicas, envelopes de segurança, fitas adesivas, plástico bolha, mobiliário e linha de limpeza"
+                className="w-full"
+              />
+            </div>
+            <p className="mt-3 text-center text-xs text-background/80 sm:text-sm">
+              Role para ver o catálogo completo · Toque fora ou aperte ESC para fechar
+            </p>
+          </div>
+        </div>
+      )}
 
       <div className="wa-fab pointer-events-none fixed bottom-0 right-0 z-40 p-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:p-6">
         <a
