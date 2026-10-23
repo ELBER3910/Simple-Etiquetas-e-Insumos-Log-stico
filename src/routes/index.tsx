@@ -10,28 +10,62 @@ import { enviarOrcamento } from "@/lib/orcamento.functions";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Simple Empreendimentos | Etiquetas Térmicas e Insumos Logísticos" },
+      {
+        title:
+          "Simple Etiquetas | Etiquetas Térmicas e Embalagens",
+      },
       {
         name: "description",
         content:
-          "Etiquetas térmicas em rolo e resma, envelopes de segurança, fitas adesivas e plástico bolha para indústria, logística, e-commerce e varejo. Atendimento direto e orçamento em 24 horas.",
+          "Compre etiquetas térmicas 40x25 mm e 100x150 mm, envelopes de segurança, fitas adesivas e plástico bolha. Solicite seu orçamento à Simple Etiquetas, em Extrema-MG.",
       },
-      { property: "og:title", content: "Simple Empreendimentos | Etiquetas Térmicas e Insumos Logísticos" },
+      {
+        property: "og:title",
+        content:
+          "Simple Etiquetas | Etiquetas Térmicas e Embalagens",
+      },
       {
         property: "og:description",
         content:
-          "Etiquetas térmicas, envelopes de segurança, fitas adesivas e plástico bolha para a sua operação. Peça o orçamento e receba resposta dentro de 24 horas.",
+          "Etiquetas térmicas, envelopes de segurança, fitas adesivas e plástico bolha para empresas, logística e e-commerce. Solicite um orçamento à Simple Etiquetas.",
       },
-      { property: "og:url", content: "https://www.simpleempreendimentos.com.br/" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Simple Empreendimentos | Etiquetas Térmicas e Insumos Logísticos" },
+      {
+        property: "og:url",
+        content: "https://www.simpleempreendimentos.com.br/",
+      },
+      {
+        property: "og:type",
+        content: "website",
+      },
+      {
+        property: "og:locale",
+        content: "pt_BR",
+      },
+      {
+        property: "og:site_name",
+        content: "Simple Etiquetas",
+      },
+      {
+        name: "twitter:card",
+        content: "summary_large_image",
+      },
+      {
+        name: "twitter:title",
+        content:
+          "Simple Etiquetas | Etiquetas Térmicas e Embalagens",
+      },
       {
         name: "twitter:description",
-        content: "Etiquetas térmicas, envelopes, fitas adesivas e plástico bolha para indústria, logística, e-commerce e varejo.",
+        content:
+          "Etiquetas térmicas, envelopes de segurança, fitas adesivas e plástico bolha para empresas. Atendimento em Extrema-MG.",
       },
     ],
-    links: [{ rel: "canonical", href: "https://www.simpleempreendimentos.com.br/" }],
+    links: [
+      {
+        rel: "canonical",
+        href: "https://www.simpleempreendimentos.com.br/",
+      },
+    ],
   }),
   component: Index,
 });
