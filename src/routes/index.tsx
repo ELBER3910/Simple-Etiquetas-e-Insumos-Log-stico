@@ -1,9 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Mail, Menu, MessageCircle, Phone, X } from "lucide-react";
+import logoLockup from "@/assets/simple-logo-lockup.png.asset.json";
+import logoFull from "@/assets/simple-logo-full.png.asset.json";
 import hero from "@/assets/hero-insumos.jpg";
 import heroBg from "@/assets/hero-insumos-fundo.jpg";
-import catalogo from "@/assets/catalogo-simple.jpg";
+import catalogo from "@/assets/catalogo-simple.jpg.asset.json";
 import { cn } from "@/lib/utils";
 import { products } from "@/lib/products";
 import { useServerFn } from "@tanstack/react-start";
@@ -158,7 +160,7 @@ function Index() {
             className="flex min-w-0 flex-col items-center justify-self-start gap-1"
           >
             <img
-              src={"https://github.com/ELBER3910/image/blob/main/simple-logo-lockup.png"}
+              src={logoLockup.url}
               alt="Simple Etiquetas"
               className="h-10 w-auto shrink-0 sm:h-11"
             />
@@ -436,7 +438,7 @@ function Index() {
         <div className="mx-auto grid max-w-6xl gap-x-10 gap-y-8 px-6 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_auto] md:items-start">
           <div>
             <div className="inline-block rounded-2xl bg-background p-4">
-              <img src={"/Logo_Simple_Empreendimentos.png"} alt="Simple Empreendimentos" className="h-28 w-auto sm:h-32" />
+              <img src={logoFull.url} alt="Simple Etiquetas — Insumos Logísticos" className="h-28 w-auto sm:h-32" />
             </div>
             <p className="mt-6 text-base leading-relaxed opacity-80">
               Oferecemos soluções inovadoras e confiáveis com excelência no atendimento e qualidade dos produtos.
@@ -488,7 +490,7 @@ function Index() {
             </div>
             <div className="min-h-0 flex-1 overflow-y-auto rounded-xl bg-background shadow-2xl">
               <img
-                src={catalogo}
+                src={catalogo.url}
                 alt="Catálogo de produtos Simple Etiquetas: etiquetas térmicas, envelopes de segurança, fitas adesivas, plástico bolha, mobiliário e linha de limpeza"
                 className="w-full"
               />
@@ -506,7 +508,7 @@ function Index() {
           target="_blank"
           rel="noreferrer"
           data-wa-fab
-          aria-label="Conversar no WhatsApp com a Simple Empreendimentos"
+          aria-label="Conversar no WhatsApp com a Simple Etiquetas"
           className="group pointer-events-auto flex flex-row-reverse items-center gap-3 transition-transform duration-200 hover:scale-105 active:scale-95"
         >
           <span className="wa-fab-bob relative grid h-14 w-14 shrink-0 place-items-center rounded-full bg-whatsapp text-whatsapp-foreground shadow-lg shadow-whatsapp/30 ring-1 ring-whatsapp-deep/40">
