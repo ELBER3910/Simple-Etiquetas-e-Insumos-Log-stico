@@ -158,7 +158,7 @@ function Index() {
             className="flex min-w-0 flex-col items-center justify-self-start gap-1"
           >
             <img
-              src={"/simple-logo-lockup.png"}
+              src={"https://github.com/ELBER3910/image/blob/main/simple-logo-lockup.png"}
               alt="Simple Etiquetas"
               className="h-10 w-auto shrink-0 sm:h-11"
             />
