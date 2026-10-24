@@ -490,7 +490,7 @@ function Index() {
             </div>
             <div className="min-h-0 flex-1 overflow-y-auto rounded-xl bg-background shadow-2xl">
               <img
-                src={catalogo.url}
+                src={catalogo}
                 alt="Catálogo de produtos Simple Etiquetas: etiquetas térmicas, envelopes de segurança, fitas adesivas, plástico bolha, mobiliário e linha de limpeza"
                 className="w-full"
               />
