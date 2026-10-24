@@ -160,7 +160,7 @@ function Index() {
             className="flex min-w-0 flex-col items-center justify-self-start gap-1"
           >
             <img
-              src={logoLockup.url}
+              src={logoLockup}
               alt="Simple Etiquetas"
               className="h-10 w-auto shrink-0 sm:h-11"
             />
@@ -438,7 +438,7 @@ function Index() {
         <div className="mx-auto grid max-w-6xl gap-x-10 gap-y-8 px-6 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_auto] md:items-start">
           <div>
             <div className="inline-block rounded-2xl bg-background p-4">
-              <img src={logoFull.url} alt="Simple Etiquetas — Insumos Logísticos" className="h-28 w-auto sm:h-32" />
+              <img src={logoFull} alt="Simple Etiquetas — Insumos Logísticos" className="h-28 w-auto sm:h-32" />
             </div>
             <p className="mt-6 text-base leading-relaxed opacity-80">
               Oferecemos soluções inovadoras e confiáveis com excelência no atendimento e qualidade dos produtos.
