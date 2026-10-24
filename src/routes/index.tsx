@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Mail, Menu, MessageCircle, Phone, X } from "lucide-react";
-import logoLockup from "@/assets/simple-logo-lockup.png.asset.json";
-import logoFull from "@/assets/simple-logo-full.png.asset.json";
+import logoLockup from "@/assets/simple-logo-lockup.png";
+import logoFull from "@/assets/simple-logo-full.png";
 import hero from "@/assets/hero-insumos.jpg";
 import heroBg from "@/assets/hero-insumos-fundo.jpg";
-import catalogo from "@/assets/catalogo-simple.jpg.asset.json";
+import catalogo from "@/assets/catalogo-simple.jpg";
 import { cn } from "@/lib/utils";
 import { products } from "@/lib/products";
 import { useServerFn } from "@tanstack/react-start";
